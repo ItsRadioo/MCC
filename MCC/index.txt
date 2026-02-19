@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Matthews Custom Engraving</title>
+
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="header-left">
+
+<img src="images/logo.jpg" alt="Matthews Custom Engraving Logo" class="logo">
+
+<span class="site-name">Matthews Custom Engraving</span>
+
+</div>
+
+<nav class="header-nav">
+
+<a href="index.html">Home</a>
+<a href="order.html">Order</a>
+<a href="order-form.html">Custom Order</a>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<h1>Precision Laser Engraving</h1>
+
+<p>
+
+Custom engraved drinkware, wood signs, leather patches, and personalized products crafted with professional precision.
+
+</p>
+
+<a href="order.html" class="button">Place an Order</a>
+
+</section>
+
+
+<section class="contact-section">
+
+<h2>Contact Us</h2>
+
+<form name="contact" method="POST" data-netlify="true" action="thank-you.html">
+
+<input type="hidden" name="form-name" value="contact">
+
+<label>Name</label>
+<input type="text" name="name" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>Message</label>
+<textarea name="message" required></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</section>
+
+
+<footer>
+
+© 2026 Matthews Custom Engraving
+
+</footer>
+
+</body>
+
+</html>
