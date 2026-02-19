@@ -12,25 +12,48 @@
 
 </head>
 
+<script>
+
+function toggleMenu()
+{
+document.getElementById("navMenu").classList.toggle("menu-open");
+document.getElementById("menuOverlay").classList.toggle("overlay-open");
+}
+
+function closeMenu()
+{
+document.getElementById("navMenu").classList.remove("menu-open");
+document.getElementById("menuOverlay").classList.remove("overlay-open");
+}
+
+</script>
+  
 <body>
 
 <header class="header">
 
 <div class="header-left">
-
 <img src="images/logo.jpg" class="logo">
-
 </div>
 
-<nav class="header-right">
+<!-- Hamburger icon -->
+<div class="menu-toggle" onclick="toggleMenu()">
+☰
+</div>
 
-<a href="index.html" class="nav-button">Home</a>
-<a href="order.html" class="nav-button">Order</a>
-<a href="events.html" class="nav-button">Events</a>
-<a href="contact.html" class="nav-button">Contact</a>
+<!-- Slide menu -->
+<nav class="header-right" id="navMenu">
+
+<a href="index.html" class="nav-button" onclick="closeMenu()">Home</a>
+<a href="order.html" class="nav-button" onclick="closeMenu()">Shop</a>
+<a href="order-form.html" class="nav-button" onclick="closeMenu()">Custom Order</a>
+<a href="events.html" class="nav-button" onclick="closeMenu()">Events</a>
+<a href="contact.html" class="nav-button" onclick="closeMenu()">Contact</a>
 
 </nav>
 
+<!-- Overlay -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 </header>
 
