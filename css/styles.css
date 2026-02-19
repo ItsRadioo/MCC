@@ -1,0 +1,67 @@
+body
+{
+margin: 0;
+font-family: Arial;
+background: #111;
+color: white;
+}
+
+.header
+{
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: black;
+padding: 10px 20px;
+}
+
+.header-left
+{
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.logo
+{
+height: 40px;
+}
+
+.title
+{
+font-size: 18px;
+}
+
+.header-right a
+{
+color: white;
+text-decoration: none;
+margin-left: 20px;
+}
+
+.main
+{
+padding: 40px;
+}
+
+.button
+{
+display: inline-block;
+background: red;
+padding: 10px 20px;
+color: white;
+text-decoration: none;
+}
+
+.product
+{
+background: #222;
+padding: 20px;
+margin: 10px 0;
+cursor: pointer;
+}
+
+.product:hover
+{
+background: #333;
+}
