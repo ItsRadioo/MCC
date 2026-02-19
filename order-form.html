@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Order</title>
+
+<title>Order Form | Matthews Custom Creations</title>
+
 <link rel="stylesheet" href="css/styles.css">
+
 </head>
 
 <body>
@@ -12,9 +17,17 @@
 <header class="header">
 
 <div class="header-left">
+
 <img src="images/logo.jpg" class="logo">
-<span class="title">Matthews Custom Engraving</span>
+
 </div>
+
+<nav class="header-right">
+
+<a href="index.html">Home</a>
+<a href="order.html">Order</a>
+
+</nav>
 
 </header>
 
@@ -23,23 +36,66 @@
 
 <h1>Custom Order</h1>
 
-<form name="order" method="POST" data-netlify="true">
+<form name="order"
+method="POST"
+data-netlify="true"
+enctype="multipart/form-data"
+action="thank-you.html">
 
 <input type="hidden" name="form-name" value="order">
 
-<label>Product</label>
-<input type="text" id="product" name="product">
 
-<label>Name</label>
-<input type="text" name="name">
+<label>Product</label>
+
+<input type="text"
+id="product"
+name="product"
+readonly
+required>
+
+
+<label>Quantity</label>
+
+<input type="number"
+name="quantity"
+value="1"
+min="1"
+required>
+
+
+<label>Customization Details</label>
+
+<textarea name="details"
+placeholder="Describe engraving text, font, placement, etc"
+required></textarea>
+
+
+<label>Upload Artwork (optional)</label>
+
+<input type="file"
+name="artwork">
+
+
+<label>Your Name</label>
+
+<input type="text"
+name="name"
+required>
+
 
 <label>Email</label>
-<input type="email" name="email">
 
-<label>Details</label>
-<textarea name="details"></textarea>
+<input type="email"
+name="email"
+required>
 
-<button type="submit">Submit</button>
+
+<button type="submit">
+
+Submit Order
+
+</button>
+
 
 </form>
 
@@ -47,10 +103,21 @@
 
 
 <script>
+
+/* auto-fill selected product */
+
 const params = new URLSearchParams(window.location.search);
-document.getElementById("product").value = params.get("product");
+
+const product = params.get("product");
+
+if(product)
+{
+document.getElementById("product").value = product;
+}
+
 </script>
 
 
 </body>
+
 </html>
