@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Select Product</title>
+
+<title>Select Product | Matthews Custom Creations</title>
+
 <link rel="stylesheet" href="css/styles.css">
+
 </head>
 
 <body>
@@ -12,37 +17,76 @@
 <header class="header">
 
 <div class="header-left">
+
 <img src="images/logo.jpg" class="logo">
-<span class="title">Matthews Custom Engraving</span>
+
 </div>
 
-<div class="header-right">
+<nav class="header-right">
+
 <a href="index.html">Home</a>
-</div>
+<a href="order.html">Order</a>
+
+</nav>
 
 </header>
 
 
 <main class="main">
 
-<h1>Select Product</h1>
+<h1>Select a Product</h1>
 
-<div class="product" onclick="selectProduct('Drinkware')">Drinkware</div>
-<div class="product" onclick="selectProduct('Wood Sign')">Wood Sign</div>
-<div class="product" onclick="selectProduct('Leather Patch')">Leather Patch</div>
-<div class="product" onclick="selectProduct('Custom')">Custom Item</div>
+<div class="tile-grid">
+
+<div class="tile" onclick="selectProduct('Drinkware')">
+
+<h2>Drinkware</h2>
+<p>Tumblers, mugs, bottles</p>
+
+</div>
+
+
+<div class="tile" onclick="selectProduct('Wood Sign')">
+
+<h2>Wood Signs</h2>
+<p>Custom engraved signage</p>
+
+</div>
+
+
+<div class="tile" onclick="selectProduct('Leather Patch')">
+
+<h2>Leather Patches</h2>
+<p>Hat patches and accessories</p>
+
+</div>
+
+
+<div class="tile" onclick="selectProduct('Custom Item')">
+
+<h2>Custom Item</h2>
+<p>Special requests</p>
+
+</div>
+
+</div>
 
 </main>
 
 
 <script>
+
 function selectProduct(product)
 {
+
 window.location.href =
 "order-form.html?product=" + encodeURIComponent(product);
+
 }
+
 </script>
 
 
 </body>
+
 </html>
