@@ -166,3 +166,26 @@ button
 {
 margin-top: 20px;
 }
+
+/* EVENTS PAGE */
+
+.calendar-container
+{
+margin-top: 20px;
+
+display: flex;
+justify-content: center;
+}
+
+
+.calendar-frame
+{
+width: 100%;
+max-width: 900px;
+height: 600px;
+
+border: none;
+
+background: white;
+}
+
