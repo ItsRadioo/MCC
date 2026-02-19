@@ -1,6 +1,4 @@
-/* =========================
-   GLOBAL
-========================= */
+/* GLOBAL */
 
 body
 {
@@ -10,15 +8,8 @@ background-color: #111;
 color: white;
 }
 
-h1, h2, h3
-{
-margin-top: 0;
-}
 
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header
 {
@@ -34,8 +25,6 @@ border-bottom: 1px solid #222;
 }
 
 
-/* LEFT SIDE */
-
 .header-left
 {
 display: flex;
@@ -43,26 +32,17 @@ align-items: center;
 }
 
 
-/* LOGO */
-
 .logo
 {
 height: 48px;
-width: auto;
-object-fit: contain;
 }
 
-
-/* RIGHT SIDE NAVIGATION */
 
 .header-right a
 {
 color: white;
 text-decoration: none;
-
 margin-left: 20px;
-
-font-size: 15px;
 }
 
 
@@ -72,9 +52,7 @@ color: #cc0000;
 }
 
 
-/* =========================
-   MAIN CONTENT
-========================= */
+/* MAIN */
 
 .main
 {
@@ -84,39 +62,7 @@ margin: auto;
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
-
-.button
-{
-display: inline-block;
-
-background-color: #cc0000;
-
-color: white;
-
-padding: 10px 20px;
-
-text-decoration: none;
-
-margin-top: 20px;
-
-border-radius: 4px;
-
-transition: background-color 0.2s ease;
-}
-
-
-.button:hover
-{
-background-color: #ff0000;
-}
-
-
-/* =========================
-   PRODUCT TILE GRID
-========================= */
+/* TILE GRID */
 
 .tile-grid
 {
@@ -136,11 +82,11 @@ margin-top: 30px;
 {
 background: #1a1a1a;
 
-padding: 30px;
+border-radius: 6px;
+
+overflow: hidden;
 
 cursor: pointer;
-
-border-radius: 6px;
 
 transition: all 0.2s ease;
 
@@ -150,129 +96,80 @@ border: 1px solid #222;
 
 .tile:hover
 {
-background: #262626;
-
-transform: translateY(-3px);
+transform: translateY(-4px);
 
 border-color: #cc0000;
+
+background: #222;
 }
 
 
-.tile h2
+/* TILE IMAGE */
+
+.tile-image
 {
-margin-bottom: 10px;
+width: 100%;
+
+height: 180px;
+
+object-fit: cover;
+
+display: block;
 }
 
-.tile p
+
+/* TILE CONTENT */
+
+.tile-content
 {
-color: #aaa;
+padding: 15px;
+}
+
+
+.tile-content h2
+{
+margin: 0 0 5px 0;
+}
+
+
+.tile-content p
+{
 margin: 0;
+color: #aaa;
 }
 
 
-/* =========================
-   FORM
-========================= */
-
-form
-{
-margin-top: 20px;
-}
-
+/* FORM */
 
 label
 {
 display: block;
 margin-top: 15px;
-margin-bottom: 5px;
 }
-
 
 input,
 textarea
 {
 width: 100%;
-
 padding: 10px;
-
-background-color: #1a1a1a;
-
+background: #1a1a1a;
 border: 1px solid #333;
-
 color: white;
-
-border-radius: 4px;
 }
 
-
-input:focus,
-textarea:focus
-{
-outline: none;
-
-border-color: #cc0000;
-}
-
-
-/* FILE INPUT */
-
-input[type="file"]
-{
-padding: 5px;
-}
-
-
-/* SUBMIT BUTTON */
 
 button
 {
 margin-top: 20px;
-
-background-color: #cc0000;
-
+background: #cc0000;
 color: white;
-
 padding: 12px;
-
 border: none;
-
 cursor: pointer;
-
-border-radius: 4px;
-
-font-size: 16px;
-
-transition: background-color 0.2s ease;
 }
 
 
 button:hover
 {
-background-color: #ff0000;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px)
-{
-
-.header
-{
-flex-direction: column;
-align-items: flex-start;
-}
-
-.header-right
-{
-margin-top: 10px;
-}
-
-.tile-grid
-{
-grid-template-columns: 1fr;
-}
-
+background: #ff0000;
 }
