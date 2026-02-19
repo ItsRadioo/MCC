@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | Matthews Custom Creations</title>
+
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="header-left">
+
+<img src="images/logo.jpg" class="logo">
+
+</div>
+
+<nav class="header-right">
+
+<a href="index.html" class="nav-button">Home</a>
+<a href="order.html" class="nav-button">Order</a>
+<a href="order-form.html" class="nav-button">Custom Order</a>
+<a href="contact.html" class="nav-button">Contact</a>
+
+</nav>
+
+</header>
+
+
+<main class="main">
+
+<h1>Contact Us</h1>
+
+<form name="contact"
+method="POST"
+data-netlify="true"
+action="thank-you.html">
+
+<input type="hidden" name="form-name" value="contact">
+
+
+<label>Name</label>
+<input type="text" name="name" required>
+
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+
+<label>Message</label>
+<textarea name="message" rows="6" required></textarea>
+
+
+<button type="submit" class="primary-button">
+Send Message
+</button>
+
+</form>
+
+</main>
+
+
+</body>
+</html>
