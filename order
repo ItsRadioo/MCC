@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Select Product</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="header-left">
+<img src="images/logo.jpg" class="logo">
+<span class="title">Matthews Custom Engraving</span>
+</div>
+
+<div class="header-right">
+<a href="index.html">Home</a>
+</div>
+
+</header>
+
+
+<main class="main">
+
+<h1>Select Product</h1>
+
+<div class="product" onclick="selectProduct('Drinkware')">Drinkware</div>
+<div class="product" onclick="selectProduct('Wood Sign')">Wood Sign</div>
+<div class="product" onclick="selectProduct('Leather Patch')">Leather Patch</div>
+<div class="product" onclick="selectProduct('Custom')">Custom Item</div>
+
+</main>
+
+
+<script>
+function selectProduct(product)
+{
+window.location.href =
+"order-form.html?product=" + encodeURIComponent(product);
+}
+</script>
+
+
+</body>
+</html>
