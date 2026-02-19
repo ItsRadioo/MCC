@@ -17,16 +17,12 @@
 <header class="header">
 
 <div class="header-left">
-
 <img src="images/logo.jpg" class="logo">
-
 </div>
 
 <nav class="header-right">
-
 <a href="index.html">Home</a>
 <a href="order.html">Order</a>
-
 </nav>
 
 </header>
@@ -38,36 +34,69 @@
 
 <div class="tile-grid">
 
-<div class="tile" onclick="selectProduct('Drinkware')">
+<!-- DRINKWARE -->
+<div class="tile"
+onclick="selectProduct('Drinkware')">
 
+<img src="images/drinkware.jpg"
+alt="Drinkware"
+class="tile-image">
+
+<div class="tile-content">
 <h2>Drinkware</h2>
 <p>Tumblers, mugs, bottles</p>
+</div>
 
 </div>
 
 
-<div class="tile" onclick="selectProduct('Wood Sign')">
+<!-- WOOD SIGN -->
+<div class="tile"
+onclick="selectProduct('Wood Sign')">
 
+<img src="images/wood-sign.jpg"
+alt="Wood Sign"
+class="tile-image">
+
+<div class="tile-content">
 <h2>Wood Signs</h2>
 <p>Custom engraved signage</p>
+</div>
 
 </div>
 
 
-<div class="tile" onclick="selectProduct('Leather Patch')">
+<!-- LEATHER PATCH -->
+<div class="tile"
+onclick="selectProduct('Leather Patch')">
 
+<img src="images/leather-patch.jpg"
+alt="Leather Patch"
+class="tile-image">
+
+<div class="tile-content">
 <h2>Leather Patches</h2>
 <p>Hat patches and accessories</p>
+</div>
 
 </div>
 
 
-<div class="tile" onclick="selectProduct('Custom Item')">
+<!-- CUSTOM ITEM -->
+<div class="tile"
+onclick="selectProduct('Custom Item')">
 
+<img src="images/custom-item.jpg"
+alt="Custom Item"
+class="tile-image">
+
+<div class="tile-content">
 <h2>Custom Item</h2>
 <p>Special requests</p>
+</div>
 
 </div>
+
 
 </div>
 
@@ -78,15 +107,12 @@
 
 function selectProduct(product)
 {
-
 window.location.href =
 "order-form.html?product=" + encodeURIComponent(product);
-
 }
 
 </script>
 
 
 </body>
-
 </html>
