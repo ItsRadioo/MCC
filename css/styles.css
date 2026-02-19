@@ -22,6 +22,9 @@ background-color: black;
 padding: 10px 20px;
 
 border-bottom: 1px solid #222;
+
+position: relative;
+z-index: 1000;
 }
 
 
@@ -29,43 +32,34 @@ border-bottom: 1px solid #222;
 
 .logo
 {
-height: 48px;
+height: 32px;
 }
 
 
-/* HOME PAGE LARGE LOGO */
+/* DESKTOP NAV */
 
-.home-logo-container
+.header-right
 {
 display: flex;
-justify-content: center;
-align-items: center;
-
-margin-top: 40px;
-margin-bottom: 20px;
+gap: 10px;
 }
 
 
-.home-logo
-{
-height: 240px;
-}
-
-
-/* NAV BUTTONS */
+/* NAV BUTTON */
 
 .nav-button
 {
 color: white;
-text-decoration: none;
 
-margin-left: 12px;
+text-decoration: none;
 
 padding: 6px 14px;
 
 border: 2px solid #cc0000;
 
 border-radius: 4px;
+
+white-space: nowrap;
 
 transition: all 0.2s ease;
 }
@@ -76,23 +70,55 @@ background-color: #cc0000;
 }
 
 
+/* HAMBURGER ICON */
+
+.menu-toggle
+{
+display: none;
+
+font-size: 28px;
+
+cursor: pointer;
+}
+
+
+/* OVERLAY */
+
+.menu-overlay
+{
+position: fixed;
+
+top: 0;
+left: 0;
+
+width: 100%;
+height: 100%;
+
+background: rgba(0,0,0,0.5);
+
+opacity: 0;
+
+pointer-events: none;
+
+transition: opacity 0.3s ease;
+
+z-index: 999;
+}
+
+.overlay-open
+{
+opacity: 1;
+pointer-events: auto;
+}
+
+
 /* MAIN */
 
 .main
 {
-padding: 40px 20px;
+padding: 20px;
 max-width: 900px;
 margin: auto;
-}
-
-
-/* BUSINESS DESCRIPTION */
-
-.business-description
-{
-font-size: 18px;
-line-height: 1.6;
-margin-bottom: 30px;
 }
 
 
@@ -102,27 +128,21 @@ margin-bottom: 30px;
 {
 display: block;
 
-width: fit-content;
+margin: 30px auto;
 
-margin: 30px auto 0 auto;
-
-padding: 14px 32px;
-
-font-size: 18px;
+padding: 12px 28px;
 
 border: 2px solid #cc0000;
 
 border-radius: 6px;
 
-background-color: transparent;
+text-decoration: none;
 
 color: white;
 
-text-decoration: none;
+width: fit-content;
 
-cursor: pointer;
-
-transition: all 0.2s ease;
+transition: 0.2s;
 }
 
 .primary-button:hover
@@ -131,61 +151,61 @@ background-color: #cc0000;
 }
 
 
+/* ===========================
+   MOBILE SLIDE MENU
+=========================== */
 
-/* FORM */
-
-form
+@media (max-width: 768px)
 {
-max-width: 500px;
-}
 
-label
+.menu-toggle
 {
 display: block;
-margin-top: 15px;
-margin-bottom: 5px;
 }
 
-input,
-textarea
+
+/* Hide desktop nav */
+
+.header-right
 {
-width: 100%;
+position: fixed;
 
-padding: 10px;
+top: 0;
+right: -250px;
 
-background-color: #1a1a1a;
+width: 250px;
+height: 100%;
 
-border: 1px solid #333;
+background-color: black;
 
-color: white;
+flex-direction: column;
 
-border-radius: 4px;
+padding-top: 80px;
+
+padding-left: 20px;
+
+gap: 15px;
+
+transition: right 0.3s ease;
+
+z-index: 1000;
 }
 
-button
+
+/* Slide open */
+
+.menu-open
 {
-margin-top: 20px;
+right: 0;
 }
 
-/* EVENTS PAGE */
 
-.calendar-container
+/* Make buttons vertical */
+
+.nav-button
 {
-margin-top: 20px;
-
-display: flex;
-justify-content: center;
+display: block;
+width: fit-content;
 }
 
-
-.calendar-frame
-{
-width: 100%;
-max-width: 900px;
-height: 600px;
-
-border: none;
-
-background: white;
 }
-
