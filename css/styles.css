@@ -465,6 +465,82 @@ color: #BBBBBB;
 font-size: 14px;
 }
 
+/* ===========================
+   SOCIAL FOOTER
+=========================== */
+
+.social-footer
+{
+position: fixed;
+
+bottom: 18px;
+
+left: 50%;
+
+transform: translateX(-50%);
+
+display: flex;
+
+gap: 16px;
+
+align-items: center;
+
+justify-content: center;
+
+z-index: 900;
+
+transition: 0.3s ease;
+}
+
+
+/* Hide when menu open */
+
+.footer-hidden
+{
+opacity: 0;
+
+pointer-events: none;
+
+transform: translateX(-50%) translateY(20px);
+}
+
+
+/* ICON STYLE */
+
+.social-icon
+{
+width: 32px;
+
+height: 32px;
+
+border-radius: 6px;
+
+cursor: pointer;
+
+opacity: 0.85;
+
+transition: all 0.2s ease;
+}
+
+.social-icon:hover
+{
+opacity: 1;
+
+transform: scale(1.15);
+
+box-shadow: 0 0 10px rgba(49,206,209,0.6);
+}
+
+
+/* MOBILE ADJUSTMENT */
+
+@media (max-width: 768px)
+{
+.social-footer
+{
+bottom: 14px;
+}
+}
 
 /* ===========================
    MOBILE SLIDE MENU
