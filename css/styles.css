@@ -400,6 +400,13 @@ background-color: #31CED1;
 color: black;
 }
 
+/* FULL WIDTH FOR CALENDAR PAGE */
+
+.main-wide
+{
+max-width: 1200px;
+}
+
 /* ===========================
    ORDER PAGE TILES (3 WIDE)
    Matches your order.html classes:
