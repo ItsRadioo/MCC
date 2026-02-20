@@ -16,20 +16,30 @@
 
 function toggleMenu()
 {
-document.getElementById("navMenu").classList.toggle("menu-open");
+const menu = document.getElementById("navMenu");
+const overlay = document.getElementById("menuOverlay");
+const footer = document.getElementById("socialFooter");
 
-document.getElementById("menuOverlay").classList.toggle("overlay-open");
+menu.classList.toggle("menu-open");
 
-document.getElementById("socialFooter").classList.toggle("footer-hidden");
+overlay.classList.toggle("overlay-open");
+
+if (footer)
+footer.classList.toggle("footer-hidden");
 }
 
 function closeMenu()
 {
-document.getElementById("navMenu").classList.remove("menu-open");
+const menu = document.getElementById("navMenu");
+const overlay = document.getElementById("menuOverlay");
+const footer = document.getElementById("socialFooter");
 
-document.getElementById("menuOverlay").classList.remove("overlay-open");
+menu.classList.remove("menu-open");
 
-document.getElementById("socialFooter").classList.remove("footer-hidden");
+overlay.classList.remove("overlay-open");
+
+if (footer)
+footer.classList.remove("footer-hidden");
 }
 
 </script>
