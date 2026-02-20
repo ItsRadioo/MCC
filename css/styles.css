@@ -32,10 +32,15 @@ z-index: 1000;
 
 .logo
 {
-height: 32px;
+height: 42px;
 width: auto;
 }
 
+.home-logo
+{
+height: 70px;
+width: auto;
+}
 
 /* DESKTOP NAV */
 
