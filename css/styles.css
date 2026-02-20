@@ -149,7 +149,14 @@ transition: 0.2s;
 background-color: #cc0000;
 }
 
+.home-logo
+{
+height: 70px !important;
+width: auto !important;
 
+display: block;
+margin: 20px auto;
+}
 /* ===========================
    MOBILE SLIDE MENU
 =========================== */
@@ -207,12 +214,4 @@ display: block;
 width: fit-content;
 }
    
-.home-logo
-{
-height: 70px !important;
-width: auto !important;
-
-display: block;
-margin: 20px auto;
-}
 }
