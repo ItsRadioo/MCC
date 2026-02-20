@@ -63,66 +63,28 @@ document.getElementById("menuOverlay").classList.remove("overlay-open");
 <h1>Custom Order</h1>
   <p> Submit a custom order request and we will see if we can accomodate it!</p>
 
-<form name="order"
-method="POST"
-data-netlify="true"
-enctype="multipart/form-data"
-action="thank-you.html">
+<form class="custom-form" method="POST" data-netlify="true">
 
-<input type="hidden" name="form-name" value="order">
+<input type="hidden" name="form-name" value="custom-order">
 
-
-<label>Product</label>
-
-<input type="text"
-id="product"
-name="product"
-readonly
-required>
-
-
-<label>Quantity</label>
-
-<input type="number"
-name="quantity"
-value="1"
-min="1"
-required>
-
-
-<label>Customization Details</label>
-
-<textarea name="details"
-placeholder="Describe engraving text, font, placement, etc"
-required></textarea>
-
-
-<label>Upload Artwork (optional)</label>
-
-<input type="file"
-name="artwork">
-
-
-<label>Your Name</label>
-
-<input type="text"
-name="name"
-required>
-
+<label>Name</label>
+<input type="text" name="name" required>
 
 <label>Email</label>
+<input type="email" name="email" required>
 
-<input type="email"
-name="email"
-required>
+<label>Product Type</label>
+<select name="product">
+<option>Drinkware</option>
+<option>Wood Sign</option>
+<option>Leather Patch</option>
+<option>Custom Item</option>
+</select>
 
+<label>Order Details</label>
+<textarea name="details" required></textarea>
 
-<button type="submit">
-
-Submit Order
-
-</button>
-
+<button type="submit">Submit Order</button>
 
 </form>
 
