@@ -42,12 +42,10 @@ document.getElementById("socialFooter").classList.remove("footer-hidden");
 <img src="images/logo.jpg" class="logo">
 </div>
 
-<!-- Hamburger icon -->
 <div class="menu-toggle" onclick="toggleMenu()">
 ☰
 </div>
 
-<!-- Slide menu -->
 <nav class="header-right" id="navMenu">
 
 <a href="index.html" class="nav-button" onclick="closeMenu()">Home</a>
@@ -58,7 +56,6 @@ document.getElementById("socialFooter").classList.remove("footer-hidden");
 
 </nav>
 
-<!-- Overlay -->
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 </header>
@@ -67,7 +64,15 @@ document.getElementById("socialFooter").classList.remove("footer-hidden");
 <main class="main">
 
 <h1>Custom Order</h1>
-  <p> Submit a custom order request and we will see if we can accomodate it!</p>
+<p>Submit a custom order request and we will see if we can accommodate it!</p>
+
+
+<!-- FLEX CONTAINER FOR FORM + IMAGE -->
+
+<div class="order-layout">
+
+
+<!-- FORM -->
 
 <form class="custom-form" method="POST" data-netlify="true">
 
@@ -80,26 +85,84 @@ document.getElementById("socialFooter").classList.remove("footer-hidden");
 <input type="email" name="email" required>
 
 <label>Product Type</label>
-<select name="product">
-<option>Drinkware</option>
-<option>Wood Sign</option>
-<option>Slate Coaster</option>
-<option>Custom Shirt</option>
+
+<select name="product" id="productSelect" required>
+
+<option value="">Select a product</option>
+
+<option value="drinkware">Drinkware</option>
+
+<option value="wood-sign">Wood Sign</option>
+
+<option value="slate-coaster">Slate Coaster</option>
+
+<option value="custom-shirt">Custom Shirt</option>
+
 </select>
 
 <label>Order Details</label>
+
 <textarea name="details" required></textarea>
 
 <button type="submit">Submit Order</button>
 
 </form>
 
+
+
+<!-- IMAGE PREVIEW -->
+
+<div class="product-preview">
+
+<img id="productImage"
+class="product-preview-image"
+style="display:none;"
+alt="Product Preview">
+
+</div>
+
+
+</div>
+
 </main>
 
 
 <script>
 
-/* auto-fill selected product */
+/* IMAGE MAP */
+
+const productImages =
+{
+"drinkware": "images/drinkware.jpg",
+"wood-sign": "images/wood-sign.jpg",
+"slate-coaster": "images/slate-coaster.jpg",
+"custom-shirt": "images/custom-shirt.jpg"
+};
+
+
+const select = document.getElementById("productSelect");
+
+const image = document.getElementById("productImage");
+
+
+select.addEventListener("change", function()
+{
+const value = this.value;
+
+if(productImages[value])
+{
+image.src = productImages[value];
+
+image.style.display = "block";
+}
+else
+{
+image.style.display = "none";
+}
+});
+
+
+/* AUTO-FILL FROM TILE PAGE */
 
 const params = new URLSearchParams(window.location.search);
 
@@ -107,23 +170,36 @@ const product = params.get("product");
 
 if(product)
 {
-document.getElementById("product").value = product;
+const normalized = product.toLowerCase().replace(" ", "-");
+
+select.value = normalized;
+
+if(productImages[normalized])
+{
+image.src = productImages[normalized];
+
+image.style.display = "block";
+}
 }
 
 </script>
 
-  <footer class="social-footer" id="socialFooter">
+
+<footer class="social-footer" id="socialFooter">
 
 <a href="https://facebook.com/profile.php?id=61583890993240" target="_blank">
+
 <img src="images/facebook.png" class="social-icon" alt="Facebook">
+
 </a>
 
 <a href="https://www.instagram.com/blakematthews131/" target="_blank">
+
 <img src="images/insta.png" class="social-icon" alt="Instagram">
+
 </a>
 
 </footer>
 
 </body>
-
 </html>
