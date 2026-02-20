@@ -213,6 +213,34 @@ min-height: 140px;
 resize: vertical;
 }
 
+/* DROPDOWN FIX — BLACK BG + WHITE TEXT */
+
+.custom-form select
+{
+background-color: #000000;
+color: #FFFFFF;
+
+border: 2px solid #31CED1;
+border-radius: 6px;
+
+padding: 12px;
+
+width: 100%;
+
+box-sizing: border-box;
+
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+}
+
+
+/* Ensure the dropdown list items are readable */
+.custom-form select option
+{
+background-color: #000000;
+color: #FFFFFF;
+}
 
 /* Submit button */
 
