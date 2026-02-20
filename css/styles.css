@@ -146,6 +146,100 @@ line-height: 1.6;
 margin-top: 20px;
 }
 
+/* CUSTOM ORDER FORM — SAME STYLE AS CONTACT */
+
+.custom-form
+{
+max-width: 500px;
+
+margin: 40px auto;
+
+display: flex;
+flex-direction: column;
+
+gap: 18px;
+}
+
+
+.custom-form label
+{
+color: white;
+font-size: 14px;
+
+margin-bottom: 4px;
+
+display: block;
+}
+
+
+.custom-form input,
+.custom-form textarea,
+.custom-form select
+{
+width: 100%;
+
+padding: 12px;
+
+background-color: transparent;
+
+color: white;
+
+border: 2px solid #31CED1;
+
+border-radius: 6px;
+
+font-size: 16px;
+
+outline: none;
+
+box-sizing: border-box;
+
+transition: 0.2s;
+}
+
+
+.custom-form input:focus,
+.custom-form textarea:focus,
+.custom-form select:focus
+{
+box-shadow: 0 0 6px rgba(49, 206, 209, 0.4);
+}
+
+
+.custom-form textarea
+{
+min-height: 140px;
+
+resize: vertical;
+}
+
+
+/* Submit button */
+
+.custom-form button
+{
+margin-top: 10px;
+
+padding: 12px;
+
+background-color: transparent;
+
+color: white;
+
+border: 2px solid #31CED1;
+
+border-radius: 6px;
+
+cursor: pointer;
+
+transition: 0.2s;
+}
+
+.custom-form button:hover
+{
+background-color: #31CED1;
+color: black;
+}
 
 /* PRIMARY BUTTON */
 
