@@ -407,6 +407,24 @@ color: black;
 max-width: 1200px;
 }
 
+.calendar-container
+{
+width: 100%;
+max-width: 1200px;
+margin: 30px auto;
+border: 2px solid #31CED1;
+border-radius: 8px;
+overflow: hidden;
+}
+
+.calendar-frame
+{
+width: 100%;
+min-width: 900px;
+height: 900px;
+border: none;
+}
+
 /* ===========================
    ORDER PAGE TILES (3 WIDE)
    Matches your order.html classes:
