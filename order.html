@@ -141,13 +141,13 @@ class="tile-image">
 
 
 <script>
-
 function selectProduct(product)
 {
-window.location.href =
-"order-form.html?product=" + encodeURIComponent(product);
-}
+const normalized = product.toLowerCase().replace(" ", "-");
 
+window.location.href =
+"order-form.html?product=" + encodeURIComponent(normalized);
+}
 </script>
 
   <footer class="social-footer" id="socialFooter">
