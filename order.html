@@ -143,7 +143,9 @@ class="tile-image">
 <script>
 function selectProduct(product)
 {
-const normalized = product.toLowerCase().replace(" ", "-");
+const normalized = product
+.toLowerCase()
+.replace(/\s+/g, "-"); // replaces ALL spaces safely
 
 window.location.href =
 "order-form.html?product=" + encodeURIComponent(normalized);
