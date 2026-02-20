@@ -1,31 +1,260 @@
-/* TILE GRID — ORDER PAGE */
+/* GLOBAL */
+
+html
+{
+background-color: #111;
+}
+
+body
+{
+margin: 0;
+font-family: Arial, sans-serif;
+background-color: #111;
+color: white;
+}
+
+
+/* HEADER */
+
+.header
+{
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+background-color: black;
+
+padding: 10px 20px;
+
+border-bottom: 1px solid #31CED1;
+
+position: relative;
+z-index: 1000;
+}
+
+
+/* LOGO */
+
+.logo
+{
+height: 42px;
+width: auto;
+}
+
+
+/* (Optional) If you use a large logo on the homepage main section */
+.home-logo
+{
+height: 350px;
+width: auto;
+}
+
+
+/* DESKTOP NAV */
+
+.header-right
+{
+display: flex;
+gap: 10px;
+}
+
+
+.image-container
+{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+/* NAV BUTTON */
+
+.nav-button
+{
+color: white;
+text-decoration: none;
+
+padding: 6px 14px;
+
+border: 2px solid #31CED1;
+border-radius: 4px;
+
+white-space: nowrap;
+
+transition: all 0.2s ease;
+}
+
+.nav-button:hover
+{
+background-color: #31CED1;
+color: black;
+}
+
+
+/* HAMBURGER ICON */
+
+.menu-toggle
+{
+display: none;
+font-size: 28px;
+cursor: pointer;
+color: white;
+}
+
+
+/* OVERLAY */
+
+.menu-overlay
+{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.5);
+
+opacity: 0;
+pointer-events: none;
+
+transition: opacity 0.3s ease;
+z-index: 999;
+}
+
+.overlay-open
+{
+opacity: 1;
+pointer-events: auto;
+}
+
+
+/* MAIN CONTENT */
+
+.main
+{
+padding: 20px;
+max-width: 900px;
+margin: auto;
+}
+
+
+/* BUSINESS DESCRIPTION */
+
+.business-description
+{
+font-size: 16px;
+line-height: 1.6;
+margin-top: 20px;
+}
+
+
+/* PRIMARY BUTTON */
+
+.primary-button
+{
+display: block;
+margin: 30px auto;
+padding: 12px 28px;
+
+border: 2px solid #31CED1;
+border-radius: 6px;
+
+text-decoration: none;
+color: white;
+
+background-color: transparent;
+
+width: fit-content;
+
+transition: 0.2s;
+}
+
+.primary-button:hover
+{
+background-color: #31CED1;
+color: black;
+}
+
+
+/* CONTACT FORM */
+
+.contact-form
+{
+max-width: 500px;
+margin: 30px auto;
+
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea
+{
+width: 100%;
+padding: 12px;
+
+background-color: #1A1A1A;
+color: white;
+
+border: 1px solid #333;
+border-radius: 4px;
+
+font-size: 16px;
+
+box-sizing: border-box;
+}
+
+.contact-form textarea
+{
+min-height: 120px;
+resize: vertical;
+}
+
+.contact-form button
+{
+padding: 12px;
+
+background-color: #31CED1;
+color: black;
+
+border: 2px solid #31CED1;
+border-radius: 4px;
+
+cursor: pointer;
+
+transition: 0.2s;
+}
+
+.contact-form button:hover
+{
+background-color: transparent;
+color: white;
+}
+
+
+/* ===========================
+   ORDER PAGE TILES (3 WIDE)
+   Matches your order.html classes:
+   .tile-grid .tile .tile-image .tile-content
+=========================== */
 
 .tile-grid
 {
 display: grid;
-
 grid-template-columns: repeat(3, 1fr);
-
 gap: 20px;
 
 max-width: 1000px;
-
 margin: 30px auto;
 }
-
-
-/* TILE */
 
 .tile
 {
 background-color: #1A1A1A;
-
 border: 2px solid #262626;
-
 border-radius: 8px;
 
 overflow: hidden;
-
 cursor: pointer;
 
 transition: 0.2s;
@@ -34,45 +263,32 @@ display: flex;
 flex-direction: column;
 }
 
-
 .tile:hover
 {
 border-color: #31CED1;
-
 transform: scale(1.03);
-
 box-shadow: 0 0 10px rgba(49, 206, 209, 0.5);
 }
-
-
-/* TILE IMAGE */
 
 .tile-image
 {
 width: 100%;
-
 height: 180px;
-
 object-fit: cover;
+display: block;
 }
-
-
-/* TILE CONTENT */
 
 .tile-content
 {
 padding: 15px;
-
 text-align: center;
 }
-
 
 .tile-content h2
 {
 margin: 0 0 5px 0;
 font-size: 18px;
 }
-
 
 .tile-content p
 {
@@ -81,8 +297,9 @@ color: #BBBBBB;
 font-size: 14px;
 }
 
+
 /* ===========================
-   MOBILE RESPONSIVE
+   MOBILE SLIDE MENU
 =========================== */
 
 @media (max-width: 768px)
@@ -100,12 +317,18 @@ top: 0;
 right: -250px;
 width: 250px;
 height: 100%;
+
 background-color: black;
+
 flex-direction: column;
+
 padding-top: 80px;
 padding-left: 20px;
+
 gap: 15px;
+
 transition: right 0.3s ease;
+
 z-index: 1000;
 }
 
@@ -117,26 +340,35 @@ right: 0;
 .nav-button
 {
 display: block;
+width: fit-content;
 }
 
-/* 2 wide grid on tablet */
-
+/* 2-wide tiles on tablet/mobile */
 .tile-grid
 {
 grid-template-columns: repeat(2, 1fr);
 }
 
+/* Make the big homepage logo not absurdly huge on phones */
+.home-logo
+{
+height: 160px;
 }
 
-
-/* 1 wide grid on phone */
+}
 
 @media (max-width: 480px)
 {
 
+/* 1-wide tiles on small phones */
 .tile-grid
 {
 grid-template-columns: 1fr;
+}
+
+.home-logo
+{
+height: 120px;
 }
 
 }
