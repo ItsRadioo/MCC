@@ -1,9 +1,6 @@
-/* GLOBAL */
-
-html
-{
-background-color: #111;
-}
+/* =========================
+   GLOBAL
+========================= */
 
 body
 {
@@ -11,10 +8,27 @@ margin: 0;
 font-family: Arial, sans-serif;
 background-color: #111;
 color: white;
+
+/* prevents footer overlap */
+padding-bottom: 90px;
+}
+
+.main
+{
+padding: 20px;
+max-width: 900px;
+margin: auto;
+}
+
+.main-wide
+{
+max-width: 1200px;
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .header
 {
@@ -32,42 +46,31 @@ position: relative;
 z-index: 1000;
 }
 
-
-/* LOGO */
-
 .logo
 {
 height: 42px;
 width: auto;
 }
 
-
-/* (Optional) If you use a large logo on the homepage main section */
 .home-logo
 {
 height: 350px;
 width: auto;
+
+display: block;
+margin: 20px auto;
 }
 
 
-/* DESKTOP NAV */
+/* =========================
+   NAVIGATION
+========================= */
 
 .header-right
 {
 display: flex;
 gap: 10px;
 }
-
-
-.image-container
-{
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-
-/* NAV BUTTON */
 
 .nav-button
 {
@@ -91,7 +94,9 @@ color: black;
 }
 
 
-/* HAMBURGER ICON */
+/* =========================
+   HAMBURGER MENU
+========================= */
 
 .menu-toggle
 {
@@ -101,22 +106,23 @@ cursor: pointer;
 color: white;
 }
 
-
-/* OVERLAY */
-
 .menu-overlay
 {
 position: fixed;
+
 top: 0;
 left: 0;
+
 width: 100%;
 height: 100%;
+
 background: rgba(0,0,0,0.5);
 
 opacity: 0;
 pointer-events: none;
 
 transition: opacity 0.3s ease;
+
 z-index: 999;
 }
 
@@ -127,154 +133,15 @@ pointer-events: auto;
 }
 
 
-/* MAIN CONTENT */
-
-.main
-{
-padding: 20px;
-max-width: 900px;
-margin: auto;
-}
-
-
-/* BUSINESS DESCRIPTION */
-
-.business-description
-{
-font-size: 16px;
-line-height: 1.6;
-margin-top: 20px;
-}
-
-/* CUSTOM ORDER FORM — SAME STYLE AS CONTACT */
-
-.custom-form
-{
-max-width: 500px;
-
-margin: 40px auto;
-
-display: flex;
-flex-direction: column;
-
-gap: 18px;
-}
-
-
-.custom-form label
-{
-color: white;
-font-size: 14px;
-
-margin-bottom: 4px;
-
-display: block;
-}
-
-
-.custom-form input,
-.custom-form textarea,
-.custom-form select
-{
-width: 100%;
-
-padding: 12px;
-
-background-color: transparent;
-
-color: white;
-
-border: 2px solid #31CED1;
-
-border-radius: 6px;
-
-font-size: 16px;
-
-outline: none;
-
-box-sizing: border-box;
-
-transition: 0.2s;
-}
-
-
-.custom-form input:focus,
-.custom-form textarea:focus,
-.custom-form select:focus
-{
-box-shadow: 0 0 6px rgba(49, 206, 209, 0.4);
-}
-
-
-.custom-form textarea
-{
-min-height: 140px;
-
-resize: vertical;
-}
-
-/* DROPDOWN FIX — BLACK BG + WHITE TEXT */
-
-.custom-form select
-{
-background-color: #000000;
-color: #FFFFFF;
-
-border: 2px solid #31CED1;
-border-radius: 6px;
-
-padding: 12px;
-
-width: 100%;
-
-box-sizing: border-box;
-
-appearance: none;
--webkit-appearance: none;
--moz-appearance: none;
-}
-
-
-/* Ensure the dropdown list items are readable */
-.custom-form select option
-{
-background-color: #000000;
-color: #FFFFFF;
-}
-
-/* Submit button */
-
-.custom-form button
-{
-margin-top: 10px;
-
-padding: 12px;
-
-background-color: transparent;
-
-color: white;
-
-border: 2px solid #31CED1;
-
-border-radius: 6px;
-
-cursor: pointer;
-
-transition: 0.2s;
-}
-
-.custom-form button:hover
-{
-background-color: #31CED1;
-color: black;
-}
-
-/* PRIMARY BUTTON */
+/* =========================
+   BUTTONS
+========================= */
 
 .primary-button
 {
 display: block;
 margin: 30px auto;
+
 padding: 12px 28px;
 
 border: 2px solid #31CED1;
@@ -295,174 +162,65 @@ transition: 0.2s;
 background-color: #31CED1;
 color: black;
 }
-/* ORDER PAGE LAYOUT CONTAINER */
 
-.order-layout
+
+/* =========================
+   BUSINESS DESCRIPTION
+========================= */
+
+.business-description
 {
-display: flex;
-
-align-items: stretch; /* makes image match form height */
-
-justify-content: center;
-
-gap: 40px;
-
-max-width: 1000px;
-
-margin: 40px auto;
+font-size: 16px;
+line-height: 1.6;
+margin-top: 20px;
 }
 
 
-/* OVERRIDE FORM WIDTH ONLY WHEN INSIDE ORDER LAYOUT */
-
-.order-layout .custom-form
-{
-margin: 0;          /* removes auto-centering */
-max-width: 500px;
-
-flex: 1;
-}
-
-
-/* IMAGE CONTAINER */
-
-.product-preview
-{
-flex: 1;
-
-display: flex;
-
-align-items: center;
-
-justify-content: center;
-}
-
-
-/* IMAGE SIZE CONTROL */
-
-.product-preview-image
-{
-max-width: 100%;
-
-max-height: 100%;  /* ensures image never exceeds form height */
-
-object-fit: contain;
-
-border-radius: 8px;
-
-border: 2px solid #31CED1;
-
-box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
-
-
-/* MOBILE STACK */
-
-@media (max-width: 768px)
-{
-.order-layout
-{
-flex-direction: column;
-
-align-items: center;
-}
-
-.product-preview-image
-{
-max-height: 400px;
-}
-}
-
-/* CONTACT FORM — STACKED CLEAN */
+/* =========================
+   CONTACT FORM
+========================= */
 
 .contact-form
 {
 max-width: 500px;
-
-margin: 40px auto;
+margin: 30px auto;
 
 display: flex;
 flex-direction: column;
-
-gap: 18px;
+gap: 15px;
 }
-
-
-/* LABELS */
-
-.contact-form label
-{
-color: white;
-font-size: 14px;
-
-margin-bottom: 4px;
-
-display: block;
-}
-
-
-/* INPUTS + TEXTAREA */
 
 .contact-form input,
 .contact-form textarea
 {
 width: 100%;
-
 padding: 12px;
 
 background-color: transparent;
-
 color: white;
 
 border: 2px solid #31CED1;
-
 border-radius: 6px;
 
 font-size: 16px;
 
-outline: none;
-
 box-sizing: border-box;
-
-transition: 0.2s;
 }
-
-
-/* FOCUS EFFECT */
-
-.contact-form input:focus,
-.contact-form textarea:focus
-{
-border-color: #31CED1;
-
-box-shadow: 0 0 6px rgba(49, 206, 209, 0.4);
-}
-
-
-/* TEXTAREA SIZE */
 
 .contact-form textarea
 {
-min-height: 140px;
-
+min-height: 120px;
 resize: vertical;
 }
 
-
-/* BUTTON */
-
 .contact-form button
 {
-margin-top: 10px;
-
 padding: 12px;
 
 background-color: transparent;
-
 color: white;
 
 border: 2px solid #31CED1;
-
 border-radius: 6px;
 
 cursor: pointer;
@@ -476,178 +234,262 @@ background-color: #31CED1;
 color: black;
 }
 
-/* FULL WIDTH FOR CALENDAR PAGE */
 
-.main-wide
+/* =========================
+   CUSTOM ORDER FORM
+========================= */
+
+.custom-form
 {
-max-width: 1200px;
+max-width: 500px;
+
+display: flex;
+flex-direction: column;
+
+gap: 18px;
 }
 
-.calendar-container
+.custom-form label
+{
+font-size: 14px;
+}
+
+.custom-form input,
+.custom-form textarea,
+.custom-form select
 {
 width: 100%;
-max-width: 1200px;
-margin: 30px auto;
+
+padding: 12px;
+
+background-color: transparent;
+color: white;
+
 border: 2px solid #31CED1;
-border-radius: 8px;
-overflow: hidden;
+border-radius: 6px;
+
+font-size: 16px;
+
+box-sizing: border-box;
 }
 
-.calendar-frame
+.custom-form textarea
 {
-width: 100%;
-min-width: 900px;
-height: 900px;
-border: none;
+min-height: 140px;
+resize: vertical;
 }
 
-/* ===========================
-   ORDER PAGE TILES (3 WIDE)
-   Matches your order.html classes:
-   .tile-grid .tile .tile-image .tile-content
-=========================== */
+.custom-form select
+{
+background-color: black;
+color: white;
+}
+
+.custom-form select option
+{
+background-color: black;
+color: white;
+}
+
+.custom-form button
+{
+padding: 12px;
+
+background-color: transparent;
+color: white;
+
+border: 2px solid #31CED1;
+border-radius: 6px;
+
+cursor: pointer;
+
+transition: 0.2s;
+}
+
+.custom-form button:hover
+{
+background-color: #31CED1;
+color: black;
+}
+
+
+/* =========================
+   ORDER FORM IMAGE LAYOUT
+========================= */
+
+.order-layout
+{
+display: grid;
+
+grid-template-columns: 500px 500px;
+
+justify-content: center;
+
+align-items: stretch;
+
+gap: 40px;
+
+margin: 40px auto;
+
+max-width: 1100px;
+}
+
+.order-layout .custom-form
+{
+margin: 0;
+height: 100%;
+}
+
+.product-preview
+{
+display: flex;
+
+align-items: flex-start;
+
+justify-content: center;
+
+height: 100%;
+}
+
+.product-preview-image
+{
+max-width: 100%;
+
+max-height: 100%;
+
+object-fit: contain;
+
+border-radius: 8px;
+
+border: 2px solid #31CED1;
+
+box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+
+/* =========================
+   PRODUCT GRID
+========================= */
 
 .tile-grid
 {
 display: grid;
+
 grid-template-columns: repeat(3, 1fr);
+
 gap: 20px;
 
 max-width: 1000px;
-margin: 30px auto;
+
+margin: auto;
 }
 
 .tile
 {
 background-color: #1A1A1A;
-border: 2px solid #262626;
-border-radius: 8px;
 
-overflow: hidden;
+border: 2px solid #31CED1;
+
+border-radius: 6px;
+
 cursor: pointer;
 
-transition: 0.2s;
+overflow: hidden;
 
-display: flex;
-flex-direction: column;
+transition: 0.2s;
 }
 
 .tile:hover
 {
-border-color: #31CED1;
 transform: scale(1.03);
-box-shadow: 0 0 10px rgba(49, 206, 209, 0.5);
 }
 
 .tile-image
 {
 width: 100%;
-height: 180px;
+height: 200px;
 object-fit: cover;
-display: block;
 }
 
 .tile-content
 {
 padding: 15px;
-text-align: center;
 }
 
-.tile-content h2
-{
-margin: 0 0 5px 0;
-font-size: 18px;
-}
 
-.tile-content p
-{
-margin: 0;
-color: #BBBBBB;
-font-size: 14px;
-}
-
-/* ===========================
+/* =========================
    SOCIAL FOOTER
-=========================== */
+========================= */
 
 .social-footer
 {
 position: fixed;
 
-bottom: 18px;
-
+bottom: 15px;
 left: 50%;
 
 transform: translateX(-50%);
 
 display: flex;
 
-gap: 16px;
+gap: 20px;
 
-align-items: center;
-
-justify-content: center;
-
-z-index: 900;
-
-transition: 0.3s ease;
+z-index: 1000;
 }
-
-
-/* Hide when menu open */
-
-.footer-hidden
-{
-opacity: 0;
-
-pointer-events: none;
-
-transform: translateX(-50%) translateY(20px);
-}
-
-
-/* ICON STYLE */
 
 .social-icon
 {
-width: 32px;
-
 height: 32px;
-
-border-radius: 6px;
 
 cursor: pointer;
 
-opacity: 0.85;
-
-transition: all 0.2s ease;
+transition: 0.2s;
 }
 
 .social-icon:hover
 {
-opacity: 1;
-
-transform: scale(1.15);
-
-box-shadow: 0 0 10px rgba(49,206,209,0.6);
+transform: scale(1.2);
 }
 
-
-/* MOBILE ADJUSTMENT */
-
-@media (max-width: 768px)
+.footer-hidden
 {
-.social-footer
+display: none;
+}
+
+
+/* =========================
+   EVENTS CALENDAR
+========================= */
+
+.calendar-container
 {
-bottom: 14px;
-}
+width: 100%;
+max-width: 1200px;
+
+margin: 30px auto;
+
+border: 2px solid #31CED1;
+
+border-radius: 8px;
+
+overflow: hidden;
 }
 
-/* ===========================
-   MOBILE SLIDE MENU
-=========================== */
+.calendar-frame
+{
+width: 100%;
 
-@media (max-width: 768px)
+height: 900px;
+
+border: none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px)
 {
 
 .menu-toggle
@@ -658,8 +500,10 @@ display: block;
 .header-right
 {
 position: fixed;
+
 top: 0;
 right: -250px;
+
 width: 250px;
 height: 100%;
 
@@ -673,8 +517,6 @@ padding-left: 20px;
 gap: 15px;
 
 transition: right 0.3s ease;
-
-z-index: 1000;
 }
 
 .menu-open
@@ -682,30 +524,11 @@ z-index: 1000;
 right: 0;
 }
 
-.nav-button
+.order-layout
 {
-display: block;
-width: fit-content;
+grid-template-columns: 1fr;
 }
 
-/* 2-wide tiles on tablet/mobile */
-.tile-grid
-{
-grid-template-columns: repeat(2, 1fr);
-}
-
-/* Make the big homepage logo not absurdly huge on phones */
-.home-logo
-{
-height: 160px;
-}
-
-}
-
-@media (max-width: 480px)
-{
-
-/* 1-wide tiles on small phones */
 .tile-grid
 {
 grid-template-columns: 1fr;
@@ -713,7 +536,17 @@ grid-template-columns: 1fr;
 
 .home-logo
 {
-height: 120px;
+height: 200px;
+}
+
+.product-preview-image
+{
+max-height: 400px;
+}
+
+.calendar-frame
+{
+height: 700px;
 }
 
 }
