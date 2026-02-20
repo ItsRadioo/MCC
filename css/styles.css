@@ -35,6 +35,16 @@ z-index: 1000;
 height: 32px;
 }
 
+/*Home Logo on main papge*/
+
+.home-logo
+{
+height: 75px;
+width: auto;
+
+display: block;
+margin: 20px auto;
+}
 
 /* DESKTOP NAV */
 
