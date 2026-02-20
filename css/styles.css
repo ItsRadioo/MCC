@@ -157,6 +157,12 @@ width: auto !important;
 display: block;
 margin: 20px auto;
 }
+
+.home-page .header-left .logo
+{
+display: none;
+}
+
 /* ===========================
    MOBILE SLIDE MENU
 =========================== */
