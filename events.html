@@ -17,13 +17,19 @@
 function toggleMenu()
 {
 document.getElementById("navMenu").classList.toggle("menu-open");
+
 document.getElementById("menuOverlay").classList.toggle("overlay-open");
+
+document.getElementById("socialFooter").classList.toggle("footer-hidden");
 }
 
 function closeMenu()
 {
 document.getElementById("navMenu").classList.remove("menu-open");
+
 document.getElementById("menuOverlay").classList.remove("overlay-open");
+
+document.getElementById("socialFooter").classList.remove("footer-hidden");
 }
 
 </script>
