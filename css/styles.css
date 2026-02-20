@@ -71,7 +71,7 @@ transition: all 0.2s ease;
 
 .nav-button:hover
 {
-background-color: #31CED1;
+background-color: black;
 }
 
 
@@ -156,6 +156,60 @@ transition: 0.2s;
 background-color: #31CED1;
 }
 
+/* CONTACT FORM */
+
+.contact-form
+{
+max-width: 500px;
+margin: 30px auto;
+
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea
+{
+width: 100%;
+padding: 12px;
+
+background-color: #1A1A1A;
+color: white;
+
+border: 1px solid #333;
+border-radius: 4px;
+
+font-size: 16px;
+
+box-sizing: border-box;
+}
+
+.contact-form textarea
+{
+min-height: 120px;
+resize: vertical;
+}
+
+.contact-form button
+{
+padding: 12px;
+
+background-color: transparent;
+color: white;
+
+border: 2px solid #CC0000;
+border-radius: 4px;
+
+cursor: pointer;
+
+transition: 0.2s;
+}
+
+.contact-form button:hover
+{
+background-color: #CC0000;
+}
 
 /* ===========================
    MOBILE SLIDE MENU
