@@ -16,34 +16,20 @@
 
 function toggleMenu()
 {
-const menu = document.getElementById("navMenu");
-const overlay = document.getElementById("menuOverlay");
-const footer = document.getElementById("socialFooter");
-
-menu.classList.toggle("menu-open");
-
-overlay.classList.toggle("overlay-open");
-
-if (footer)
-footer.classList.toggle("footer-hidden");
+document.getElementById("navMenu").classList.toggle("menu-open");
+document.getElementById("menuOverlay").classList.toggle("overlay-open");
+document.getElementById("socialFooter").classList.toggle("footer-hidden");
 }
 
 function closeMenu()
 {
-const menu = document.getElementById("navMenu");
-const overlay = document.getElementById("menuOverlay");
-const footer = document.getElementById("socialFooter");
-
-menu.classList.remove("menu-open");
-
-overlay.classList.remove("overlay-open");
-
-if (footer)
-footer.classList.remove("footer-hidden");
+document.getElementById("navMenu").classList.remove("menu-open");
+document.getElementById("menuOverlay").classList.remove("overlay-open");
+document.getElementById("socialFooter").classList.remove("footer-hidden");
 }
 
 </script>
-  
+
 <body>
 
 <header class="header">
@@ -52,18 +38,14 @@ footer.classList.remove("footer-hidden");
 <img src="images/logo.jpg" class="logo">
 </div>
 
-<div class="menu-toggle" onclick="toggleMenu()">
-☰
-</div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
 <nav class="header-right" id="navMenu">
-
 <a href="index.html" class="nav-button" onclick="closeMenu()">Home</a>
 <a href="order.html" class="nav-button" onclick="closeMenu()">Shop</a>
-<!--<a href="order-form.html" class="nav-button" onclick="closeMenu()">Custom Order</a> -->
+<a href="order-form.html" class="nav-button" onclick="closeMenu()">Custom Order</a>
 <a href="events.html" class="nav-button" onclick="closeMenu()">Events</a>
 <a href="contact.html" class="nav-button" onclick="closeMenu()">Contact</a>
-
 </nav>
 
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
@@ -76,14 +58,9 @@ footer.classList.remove("footer-hidden");
 <h1>Custom Order</h1>
 <p>Submit a custom order request and we will see if we can accommodate it!</p>
 
-
-<!-- FLEX CONTAINER FOR FORM + IMAGE -->
-
 <div class="order-layout">
 
-
 <!-- FORM -->
-
 <form class="custom-form" method="POST" data-netlify="true">
 
 <input type="hidden" name="form-name" value="custom-order">
@@ -95,42 +72,69 @@ footer.classList.remove("footer-hidden");
 <input type="email" name="email" required>
 
 <label>Product Type</label>
-
 <select name="product" id="productSelect" required>
-
 <option value="">Select a product</option>
-
 <option value="drinkware">Drinkware</option>
-
 <option value="wood-sign">Wood Sign</option>
-
 <option value="slate-coaster">Slate Coaster</option>
-
-<option value="custom-shirt">Custom Shirt</option>
-
+<option value="vinyl-shirt">Vinyl Shirt</option>
 </select>
 
-<label>Order Details</label>
+<!-- PREVIEW INPUTS -->
+<label>Text to engrave (optional)</label>
+<input type="text" id="previewText" name="preview_text" placeholder="Example: 'Chase' or 'Happy Birthday'">
 
-<textarea name="details" required></textarea>
+<div class="two-col-controls">
+<div>
+<label>Text Size</label>
+<input type="range" id="textSize" min="18" max="80" value="42">
+</div>
+
+<div>
+<label>Text Position (Up/Down)</label>
+<input type="range" id="textY" min="0" max="100" value="70">
+</div>
+</div>
+
+<label>Upload image (optional)</label>
+<input type="file" id="imageUpload" name="artwork_upload" accept="image/*">
+
+<div class="two-col-controls">
+<div>
+<label>Image Size</label>
+<input type="range" id="imgScale" min="10" max="140" value="70">
+</div>
+
+<div>
+<label>Image Position (Up/Down)</label>
+<input type="range" id="imgY" min="0" max="100" value="45">
+</div>
+</div>
+
+<label>Order Details</label>
+<textarea name="details"
+placeholder="Describe what you want engraved: text, font style (if known), size, placement, and any special instructions. Example: 'Front center, name Chase in script font, small maple leaf under it.'"
+required></textarea>
 
 <button type="submit">Submit Order</button>
 
 </form>
 
 
-
-<!-- IMAGE PREVIEW -->
-
+<!-- LIVE PREVIEW -->
 <div class="product-preview">
 
-<img id="productImage"
-class="product-preview-image"
-style="display:none;"
-alt="Product Preview">
+<div class="preview-title">Live Preview</div>
 
+<div class="preview-stage">
+<canvas id="previewCanvas" width="900" height="900"></canvas>
 </div>
 
+<div class="preview-note">
+This is a visual mockup to help show placement. Final engraving may vary slightly.
+</div>
+
+</div>
 
 </div>
 
@@ -139,57 +143,197 @@ alt="Product Preview">
 
 <script>
 
-/* IMAGE MAP */
+/* ==========================
+   PRODUCT TEMPLATE MAP
+========================== */
 
-const productImages =
+const productTemplates =
 {
 "drinkware": "images/drinkware.png",
 "wood-sign": "images/woodsign.png",
 "slate-coaster": "images/coasters.png",
-"custom-shirt": "images/shirt.png"
+"vinyl-shirt": "images/shirt.png"
 };
 
+const productSelect = document.getElementById("productSelect");
+const previewText = document.getElementById("previewText");
+const textSize = document.getElementById("textSize");
+const textY = document.getElementById("textY");
 
-const select = document.getElementById("productSelect");
+const imageUpload = document.getElementById("imageUpload");
+const imgScale = document.getElementById("imgScale");
+const imgY = document.getElementById("imgY");
 
-const image = document.getElementById("productImage");
+const canvas = document.getElementById("previewCanvas");
+const ctx = canvas.getContext("2d");
 
+let baseImg = new Image();
+let userImg = null;
 
-select.addEventListener("change", function()
+/* Draw helper */
+function drawPreview()
 {
-const value = this.value;
+ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-if(productImages[value])
+/* draw base */
+if (baseImg && baseImg.complete && baseImg.naturalWidth)
 {
-image.src = productImages[value];
+drawFitImage(baseImg);
+}
 
-image.style.display = "block";
+/* draw user image */
+if (userImg)
+{
+drawUserArtwork(userImg);
+}
+
+/* draw text */
+const txt = previewText.value.trim();
+if (txt.length > 0)
+{
+drawUserText(txt);
+}
+}
+
+/* Fit base image to canvas */
+function drawFitImage(img)
+{
+const cw = canvas.width;
+const ch = canvas.height;
+
+const ir = img.naturalWidth / img.naturalHeight;
+const cr = cw / ch;
+
+let w, h, x, y;
+
+if (ir > cr)
+{
+w = cw;
+h = cw / ir;
+x = 0;
+y = (ch - h) / 2;
 }
 else
 {
-image.style.display = "none";
+h = ch;
+w = ch * ir;
+x = (cw - w) / 2;
+y = 0;
 }
+
+ctx.drawImage(img, x, y, w, h);
+}
+
+/* Overlay uploaded image with sizing and position */
+function drawUserArtwork(img)
+{
+const cw = canvas.width;
+const ch = canvas.height;
+
+const scalePct = Number(imgScale.value) / 100; /* 0.10 to 1.40 */
+const targetW = cw * 0.55 * scalePct;
+const targetH = targetW * (img.naturalHeight / img.naturalWidth);
+
+const x = (cw - targetW) / 2;
+const y = (ch * (Number(imgY.value) / 100)) - (targetH / 2);
+
+ctx.save();
+ctx.globalAlpha = 0.95;
+ctx.drawImage(img, x, y, targetW, targetH);
+ctx.restore();
+}
+
+/* Text render */
+function drawUserText(txt)
+{
+const cw = canvas.width;
+const ch = canvas.height;
+
+const size = Number(textSize.value);
+const y = ch * (Number(textY.value) / 100);
+
+ctx.save();
+
+/* glow-ish outline so white text stays visible */
+ctx.font = `bold ${size}px Arial`;
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+
+ctx.lineWidth = Math.max(4, Math.floor(size / 10));
+ctx.strokeStyle = "rgba(0,0,0,0.75)";
+ctx.strokeText(txt, cw / 2, y);
+
+ctx.fillStyle = "white";
+ctx.fillText(txt, cw / 2, y);
+
+ctx.restore();
+}
+
+/* Load base template */
+function setBaseTemplate(key)
+{
+const src = productTemplates[key];
+if (!src)
+{
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+return;
+}
+
+baseImg = new Image();
+baseImg.onload = () => drawPreview();
+baseImg.src = src;
+}
+
+/* React to changes */
+productSelect.addEventListener("change", () =>
+{
+setBaseTemplate(productSelect.value);
 });
 
+previewText.addEventListener("input", drawPreview);
+textSize.addEventListener("input", drawPreview);
+textY.addEventListener("input", drawPreview);
 
-/* AUTO-FILL FROM TILE PAGE */
+imgScale.addEventListener("input", drawPreview);
+imgY.addEventListener("input", drawPreview);
 
-const params = new URLSearchParams(window.location.search);
-
-const product = params.get("product");
-
-if(product)
+imageUpload.addEventListener("change", (e) =>
 {
-const normalized = product.toLowerCase().replace(" ", "-");
-
-select.value = normalized;
-
-if(productImages[normalized])
+const file = e.target.files && e.target.files[0];
+if (!file)
 {
-image.src = productImages[normalized];
-
-image.style.display = "block";
+userImg = null;
+drawPreview();
+return;
 }
+
+const reader = new FileReader();
+reader.onload = () =>
+{
+const img = new Image();
+img.onload = () =>
+{
+userImg = img;
+drawPreview();
+};
+img.src = reader.result;
+};
+reader.readAsDataURL(file);
+});
+
+/* AUTO-FILL FROM TILE PAGE (order.html -> order-form.html?product=xxx) */
+const params = new URLSearchParams(window.location.search);
+const productParam = params.get("product");
+
+if (productParam)
+{
+productSelect.value = productParam;
+setBaseTemplate(productParam);
+}
+else
+{
+/* default blank canvas until chosen */
+ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 </script>
@@ -198,15 +342,11 @@ image.style.display = "block";
 <footer class="social-footer" id="socialFooter">
 
 <a href="https://facebook.com/profile.php?id=61583890993240" target="_blank">
-
 <img src="images/facebook.png" class="social-icon" alt="Facebook">
-
 </a>
 
 <a href="https://www.instagram.com/blakematthews131/" target="_blank">
-
 <img src="images/insta.png" class="social-icon" alt="Instagram">
-
 </a>
 
 </footer>
