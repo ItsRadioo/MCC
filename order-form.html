@@ -84,30 +84,62 @@ document.getElementById("socialFooter").classList.remove("footer-hidden");
 <label>Text to engrave (optional)</label>
 <input type="text" id="previewText" name="preview_text" placeholder="Example: 'Chase' or 'Happy Birthday'">
 
-<div class="two-col-controls">
+<div class="three-col-controls">
 <div>
 <label>Text Size</label>
 <input type="range" id="textSize" min="18" max="80" value="42">
 </div>
 
 <div>
-<label>Text Position (Up/Down)</label>
+<label>Text Left/Right</label>
+<input type="range" id="textX" min="-45" max="45" value="0">
+</div>
+
+<div>
+<label>Text Up/Down</label>
 <input type="range" id="textY" min="0" max="100" value="70">
+</div>
+</div>
+
+<div class="two-col-controls">
+<div>
+<label>Text Rotation</label>
+<input type="range" id="textRot" min="-45" max="45" value="0">
+</div>
+
+<div class="slider-readout">
+<span id="textRotReadout">0°</span>
 </div>
 </div>
 
 <label>Upload image (optional)</label>
 <input type="file" id="imageUpload" name="artwork_upload" accept="image/*">
 
-<div class="two-col-controls">
+<div class="three-col-controls">
 <div>
 <label>Image Size</label>
 <input type="range" id="imgScale" min="10" max="140" value="70">
 </div>
 
 <div>
-<label>Image Position (Up/Down)</label>
+<label>Image Left/Right</label>
+<input type="range" id="imgX" min="-45" max="45" value="0">
+</div>
+
+<div>
+<label>Image Up/Down</label>
 <input type="range" id="imgY" min="0" max="100" value="45">
+</div>
+</div>
+
+<div class="two-col-controls">
+<div>
+<label>Image Rotation</label>
+<input type="range" id="imgRot" min="-45" max="45" value="0">
+</div>
+
+<div class="slider-readout">
+<span id="imgRotReadout">0°</span>
 </div>
 </div>
 
@@ -156,19 +188,34 @@ const productTemplates =
 };
 
 const productSelect = document.getElementById("productSelect");
+
+/* text controls */
 const previewText = document.getElementById("previewText");
 const textSize = document.getElementById("textSize");
+const textX = document.getElementById("textX");
 const textY = document.getElementById("textY");
+const textRot = document.getElementById("textRot");
+const textRotReadout = document.getElementById("textRotReadout");
 
+/* image controls */
 const imageUpload = document.getElementById("imageUpload");
 const imgScale = document.getElementById("imgScale");
+const imgX = document.getElementById("imgX");
 const imgY = document.getElementById("imgY");
+const imgRot = document.getElementById("imgRot");
+const imgRotReadout = document.getElementById("imgRotReadout");
 
 const canvas = document.getElementById("previewCanvas");
 const ctx = canvas.getContext("2d");
 
 let baseImg = new Image();
 let userImg = null;
+
+/* degrees -> radians */
+function degToRad(deg)
+{
+return deg * (Math.PI / 180);
+}
 
 /* Draw helper */
 function drawPreview()
@@ -224,7 +271,7 @@ y = 0;
 ctx.drawImage(img, x, y, w, h);
 }
 
-/* Overlay uploaded image with sizing and position */
+/* Overlay uploaded image with sizing, X/Y, and rotation */
 function drawUserArtwork(img)
 {
 const cw = canvas.width;
@@ -234,37 +281,58 @@ const scalePct = Number(imgScale.value) / 100; /* 0.10 to 1.40 */
 const targetW = cw * 0.55 * scalePct;
 const targetH = targetW * (img.naturalHeight / img.naturalWidth);
 
-const x = (cw - targetW) / 2;
-const y = (ch * (Number(imgY.value) / 100)) - (targetH / 2);
+/* position */
+const xOffset = (cw * (Number(imgX.value) / 100));
+const yCenter = (ch * (Number(imgY.value) / 100));
+
+const centerX = (cw / 2) + xOffset;
+const centerY = yCenter;
+
+/* rotation */
+const rot = degToRad(Number(imgRot.value));
 
 ctx.save();
 ctx.globalAlpha = 0.95;
-ctx.drawImage(img, x, y, targetW, targetH);
+
+/* rotate around artwork center */
+ctx.translate(centerX, centerY);
+ctx.rotate(rot);
+ctx.drawImage(img, -targetW / 2, -targetH / 2, targetW, targetH);
+
 ctx.restore();
 }
 
-/* Text render */
+/* Text render with X/Y and rotation */
 function drawUserText(txt)
 {
 const cw = canvas.width;
 const ch = canvas.height;
 
 const size = Number(textSize.value);
+
+const xOffset = (cw * (Number(textX.value) / 100));
+const x = (cw / 2) + xOffset;
+
 const y = ch * (Number(textY.value) / 100);
+
+const rot = degToRad(Number(textRot.value));
 
 ctx.save();
 
-/* glow-ish outline so white text stays visible */
+ctx.translate(x, y);
+ctx.rotate(rot);
+
 ctx.font = `bold ${size}px Arial`;
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
 
+/* outline for visibility */
 ctx.lineWidth = Math.max(4, Math.floor(size / 10));
 ctx.strokeStyle = "rgba(0,0,0,0.75)";
-ctx.strokeText(txt, cw / 2, y);
+ctx.strokeText(txt, 0, 0);
 
 ctx.fillStyle = "white";
-ctx.fillText(txt, cw / 2, y);
+ctx.fillText(txt, 0, 0);
 
 ctx.restore();
 }
@@ -284,6 +352,13 @@ baseImg.onload = () => drawPreview();
 baseImg.src = src;
 }
 
+/* Update slider readouts */
+function updateReadouts()
+{
+textRotReadout.innerText = `${Number(textRot.value)}°`;
+imgRotReadout.innerText = `${Number(imgRot.value)}°`;
+}
+
 /* React to changes */
 productSelect.addEventListener("change", () =>
 {
@@ -291,11 +366,16 @@ setBaseTemplate(productSelect.value);
 });
 
 previewText.addEventListener("input", drawPreview);
+
 textSize.addEventListener("input", drawPreview);
+textX.addEventListener("input", drawPreview);
 textY.addEventListener("input", drawPreview);
+textRot.addEventListener("input", () => { updateReadouts(); drawPreview(); });
 
 imgScale.addEventListener("input", drawPreview);
+imgX.addEventListener("input", drawPreview);
 imgY.addEventListener("input", drawPreview);
+imgRot.addEventListener("input", () => { updateReadouts(); drawPreview(); });
 
 imageUpload.addEventListener("change", (e) =>
 {
@@ -321,9 +401,11 @@ img.src = reader.result;
 reader.readAsDataURL(file);
 });
 
-/* AUTO-FILL FROM TILE PAGE (order.html -> order-form.html?product=xxx) */
+/* AUTO-FILL FROM TILE PAGE */
 const params = new URLSearchParams(window.location.search);
 const productParam = params.get("product");
+
+updateReadouts();
 
 if (productParam)
 {
@@ -332,7 +414,6 @@ setBaseTemplate(productParam);
 }
 else
 {
-/* default blank canvas until chosen */
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
